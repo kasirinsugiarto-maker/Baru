@@ -1,11 +1,44 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Admin — TV NUSANTARA 45</title>
-  </head>
-  <body>
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV NUSANTARA 45 — Mengawal Persatuan dan Kesatuan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="TV NUSANTARA 45" class="logo">
+    <h1>TV NUSANTARA 45</h1>
+    <p class="tagline">Mengawal Persatuan dan Kesatuan</p>
+  </header>
+
+  <main id="news-container"></main>
+
+  <footer>
+    <p>Ikuti kami:
+      <a href="https://facebook.com/tvnusantara45">Facebook</a> |
+      <a href="https://instagram.com/tvnusantara45">Instagram</a> |
+      <a href="https://youtube.com/@tvnusantara45">YouTube</a> |
+      <a href="https://tiktok.com/@tvnusantara45">Tiktok</a>
+    </p>
+  </footer>
+
+  <script>
+    fetch("articles.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("news-container");
+        container.innerHTML = data.map(article => `
+          <article>
+            <h2>${article.title}</h2>
+            <p><strong>${article.author}</strong> - ${article.date}</p>
+            <img src="${article.thumbnail}" alt="">
+            <p>${article.body}</p>
+            ${article.video ? `<iframe width="100%" height="315" src="${article.video}" frameborder="0" allowfullscreen></iframe>` : ""}
+          </article>
+        `).join("");
+      });
+  </script>
+</body>
 </html>
