@@ -1,0 +1,49 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "articles"
+    label: "Articles"
+    files:
+      - file: "data/articles.json"
+        label: "Articles JSON"
+        name: "articles_json"
+        format: json
+        fields:
+          - label: "Articles"
+            name: "articles"
+            widget: "list"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Slug"
+                name: "slug"
+                widget: "string"
+                required: false
+              - label: "Date"
+                name: "date"
+                widget: "datetime"
+              - label: "Author"
+                name: "author"
+                widget: "string"
+              - label: "Excerpt"
+                name: "excerpt"
+                widget: "text"
+                required: false
+              - label: "Thumbnail"
+                name: "thumbnail"
+                widget: "image"
+                required: false
+              - label: "Video URL"
+                name: "video_url"
+                widget: "string"
+                required: false
+                hint: "Masukkan URL YouTube (contoh: https://www.youtube.com/watch?v=xxxx)"
+              - label: "Body"
+                name: "body"
+                widget: "markdown"
